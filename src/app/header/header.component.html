@@ -1,7 +1,7 @@
 <div class="topnav">
-    <a href="/" class="active">Home</a>
-    <a href="/user">User</a>
-    <a href="/about">About</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/user" routerLinkActive="active">User</a>
+    <a routerLink="/about" routerLinkActive="active">About</a>
     <button onClick={handleLogout} style="font-size: 17px ; padding: 14px 16px">
         Logout<i class="fa fa-sign-out"></i>
     </button>
