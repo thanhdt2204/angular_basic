@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +12,12 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
-
   login(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login`, data, { responseType: 'text' as 'json' });
+  }
+
+  getAllUsers(data: any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users`, { params: data });
   }
 
 }

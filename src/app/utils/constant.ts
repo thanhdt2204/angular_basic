@@ -1,5 +1,9 @@
 export class Constants {
 
+    public static pagination = {
+        PAGE_SIZE: 5
+    }
+
     public static message = {
         INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
         SAVE_USER_SUCCESSFULLY: 'SAVE_USER_SUCCESSFULLY',

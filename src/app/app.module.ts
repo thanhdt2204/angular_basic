@@ -12,8 +12,12 @@ import { HeaderComponent } from './views/header/header.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
-import { UserComponent } from './views/user/user.component';
+import { UserComponent } from './views/users/user/user.component';
 import { CustomHttpRequestInterceptor } from './services/customHttpRequest';
+import { ListUserComponent } from './views/users/list-user/list-user.component';
+import { AddUserComponent } from './views/users/add-user/add-user.component';
+import { UpdateUserComponent } from './views/users/update-user/update-user.component';
+import { DeleteUserComponent } from './views/users/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { CustomHttpRequestInterceptor } from './services/customHttpRequest';
     AboutComponent,
     NotFoundComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    ListUserComponent,
+    AddUserComponent,
+    UpdateUserComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,
