@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Constants } from 'src/app/utils/constant';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   }
 
   handleLogout() {
+    localStorage.removeItem(Constants.storage.STORAGE_KEY);
     this.router.navigate(['/login']);
   }
 
