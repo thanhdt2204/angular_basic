@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { UserPage } from '../models/userPage';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  login(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/login`, data, { responseType: 'text' as 'json' });
+  login(data: any): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/login`, data, { responseType: 'text' as 'json' });
   }
 
-  getAllUsers(data: any): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/users`, { params: data });
+  getAllUsers(data: any): Observable<UserPage> {
+    return this.http.get<UserPage>(`${this.baseUrl}/users`, { params: data });
   }
 
 }

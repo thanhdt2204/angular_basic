@@ -1,13 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserPage } from 'src/app/models/userPage';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.scss']
+  styleUrls: ['../user/user.component.scss']
 })
 export class ListUserComponent implements OnInit {
 
+  lodash = _;
+  @Input() userPage = new UserPage;
+  @Input() currentPage = 0;
+
+  @Output() f_changePage = new EventEmitter<number>();
+
   constructor() { }
+
+  handleChangePage(pageNumber: number) {
+    this.f_changePage.emit(pageNumber);
+  };
 
   ngOnInit(): void {
   }

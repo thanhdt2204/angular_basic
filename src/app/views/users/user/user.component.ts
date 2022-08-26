@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserPage } from 'src/app/models/userPage';
 import { UsersService } from 'src/app/services/users.service';
 import { Constants } from 'src/app/utils/constant';
 
@@ -9,19 +10,25 @@ import { Constants } from 'src/app/utils/constant';
 })
 export class UserComponent implements OnInit {
 
-  userPage: any;
+  userPage: UserPage = new UserPage;
   currentPage: number = 0;
 
   constructor(private userService: UsersService) { }
 
-  ngOnInit(): void {
-    this.userService.getAllUsers({ page: this.currentPage, size: Constants.pagination.PAGE_SIZE })
+  getAllUsers(currentPage: number): any {
+    this.userService.getAllUsers({ page: currentPage, size: Constants.pagination.PAGE_SIZE })
       .subscribe({
-        next: data => {
-          this.userPage = data;
-          console.log("Userpage: ", this.userPage);
-        }
+        next: data => this.userPage = data
       })
+  }
+
+  f_changePage(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.getAllUsers(pageNumber);
+  }
+
+  ngOnInit(): void {
+    this.getAllUsers(this.currentPage);
   }
 
 }

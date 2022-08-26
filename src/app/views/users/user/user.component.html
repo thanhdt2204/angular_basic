@@ -1,1 +1,21 @@
-<p>user works!</p>
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>User Management</h2>
+                </div>
+                <div class="col-sm-6">
+                    <a href='# ' onClick={handleAddNew} class="btn btn-success">
+                        <i class="material-icons">&#xE147;</i>
+                        <span>Add New</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <app-list-user [userPage]="userPage" [currentPage]="currentPage" (f_changePage)="f_changePage($event)">
+        </app-list-user>
+    </div>
+</div>
+<app-update-user></app-update-user>
+<app-delete-user></app-delete-user>

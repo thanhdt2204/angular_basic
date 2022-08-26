@@ -1,1 +1,77 @@
-<p>list-user works!</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of userPage?.content;">
+            <td>{{item.email}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>
+                <a href="#editUserModal" class="edit" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                </a>
+                <a href='#deleteUserModal' class="delete" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template [ngIf]="userPage.totalElements > 0">
+    <div class="clearfix">
+        <div class="hint-text">
+            Showing&nbsp;
+            <b>{{userPage.numberOfElements}}</b>&nbsp;
+            out of&nbsp;
+            <b>{{userPage.totalElements}}</b>&nbsp;
+            entries
+        </div>
+        <ul class="pagination">
+
+            <div *ngIf="currentPage == 0; then thenPrevious else elsePrevious"></div>
+            <ng-template #thenPrevious>
+                <li class="page-item disabled">
+                    <a href='javascript:void(0)'>Previous</a>
+                </li>
+            </ng-template>
+            <ng-template #elsePrevious>
+                <li (click)="handleChangePage(currentPage - 1)" class="page-item">
+                    <a href='javascript:void(0)'>Previous</a>
+                </li>
+            </ng-template>
+
+            <ng-template ngFor let-item [ngForOf]="lodash.range(0, userPage.totalPages, 1)">
+                <div *ngIf="currentPage === item; then thenActive else elseActive"></div>
+                <ng-template #thenActive>
+                    <li (click)="handleChangePage(item)" class="page-item active">
+                        <a href='javascript:void(0)' class="page-link">{{item + 1}}</a>
+                    </li>
+                </ng-template>
+                <ng-template #elseActive>
+                    <li (click)="handleChangePage(item)" class="page-item">
+                        <a href='javascript:void(0)' class="page-link">{{item + 1}}</a>
+                    </li>
+                </ng-template>
+            </ng-template>
+
+            <div *ngIf="currentPage === userPage.totalPages - 1; then thenNext else elseNext"></div>
+            <ng-template #thenNext>
+                <li class="page-item disabled">
+                    <a href='javascript:void(0)' class="page-link">Next</a>
+                </li>
+            </ng-template>
+            <ng-template #elseNext>
+                <li (click)="handleChangePage(currentPage + 1)" class="page-item">
+                    <a href='javascript:void(0)' class="page-link">Next</a>
+                </li>
+            </ng-template>
+
+        </ul>
+    </div>
+</ng-template>
