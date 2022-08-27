@@ -1,8 +1,10 @@
-<div class="topnav">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/user" routerLinkActive="active">User</a>
-    <a routerLink="/about" routerLinkActive="active">About</a>
-    <button (click)="handleLogout()" style="font-size: 17px ; padding: 14px 16px">
-        Logout<i class="fa fa-sign-out"></i>
-    </button>
-</div>
+<ng-template [ngIf]="isLoggedIn">
+    <div class="topnav">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a routerLink="/user" routerLinkActive="active">User</a>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+        <button (click)="handleLogout()" style="font-size: 17px ; padding: 14px 16px">
+            Logout<i class="fa fa-sign-out"></i>
+        </button>
+    </div>
+</ng-template>
