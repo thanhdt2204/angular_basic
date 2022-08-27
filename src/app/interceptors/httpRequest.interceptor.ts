@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Constants } from '../utils/constant';
 
 @Injectable()
-export class CustomHttpRequestInterceptor implements HttpInterceptor {
+export class HttpRequestInterceptor implements HttpInterceptor {
 
     constructor() { }
 
