@@ -9,15 +9,24 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = localStorage.getItem(Constants.storage.STORAGE_KEY);
-        request = request.clone({
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            setHeaders: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        if (request.url.endsWith('/login')) {
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                })
+            });
+        } else {
+            const item = JSON.parse(localStorage.getItem(Constants.storage.STORAGE_KEY) || '');
+            const token = item ? item.feature_store.store.token : '';
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                }),
+                setHeaders: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        }
         return next.handle(request);
     }
 }
