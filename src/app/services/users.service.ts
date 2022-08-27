@@ -21,4 +21,8 @@ export class UsersService {
     return this.http.get<UserPage>(`${this.baseUrl}/users`, { params: data });
   }
 
+  deleteUser(email: any): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/user/${email}`);
+  }
+
 }

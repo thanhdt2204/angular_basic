@@ -14,11 +14,16 @@ export class ListUserComponent implements OnInit {
   @Input() currentPage = 0;
 
   @Output() f_changePage = new EventEmitter<number>();
+  @Output() f_buttonDelete = new EventEmitter<string>();
 
   constructor() { }
 
   handleChangePage(pageNumber: number) {
     this.f_changePage.emit(pageNumber);
+  };
+
+  handleButtonDelete(email: string) {
+    this.f_buttonDelete.emit(email);
   };
 
   ngOnInit(): void {
