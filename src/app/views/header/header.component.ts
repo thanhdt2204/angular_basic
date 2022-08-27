@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
   }
 
   handleLogout() {
-    localStorage.removeItem(Constants.storage.STORAGE_KEY);
     this.store.dispatch(logoutSuccessAction());
     this.router.navigate(['/login']);
   }
