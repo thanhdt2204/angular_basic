@@ -1,5 +1,10 @@
 export class Constants {
 
+    public static actionType = {
+        LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+        LOGOUT_SUCCESS: 'LOGOUT_SUCCESS'
+    }
+
     public static pagination = {
         PAGE_SIZE: 5
     }

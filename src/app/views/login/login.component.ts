@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../services/users.service';
-import { ToastrService } from 'ngx-toastr';
-import { Constants } from 'src/app/utils/constant';
 import { Router } from '@angular/router';
+import { Store } from "@ngrx/store";
+import { ToastrService } from 'ngx-toastr';
+import { loginSuccessAction } from 'src/app/store/actions/user.action';
+import { Constants } from 'src/app/utils/constant';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private toast: ToastrService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: data => {
           localStorage.setItem(Constants.storage.STORAGE_KEY, data);
+          this.store.dispatch(loginSuccessAction({ token: data }));
           this.router.navigate(['/']);
         },
         error: error => {
