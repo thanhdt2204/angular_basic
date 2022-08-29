@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs';
 import { UserPage } from 'src/app/models/userPage';
+import { DataService } from 'src/app/services/data.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Constants } from 'src/app/utils/constant';
 
@@ -15,7 +18,11 @@ export class UserComponent implements OnInit {
   currentPage: number = 0;
   email: string = '';
 
-  constructor(private userService: UsersService, private toast: ToastrService) { }
+  constructor(
+    private userService: UsersService,
+    private toast: ToastrService,
+    private router: Router,
+    private dataService: DataService) { }
 
   getAllUsers(currentPage: number): any {
     this.userService.getAllUsers({ page: currentPage, size: Constants.pagination.PAGE_SIZE })
@@ -50,8 +57,19 @@ export class UserComponent implements OnInit {
         }
       })
   }
+
+  handleAddNew() {
+    this.router.navigate(['/user/new']);
+  }
+
   ngOnInit(): void {
     this.getAllUsers(this.currentPage);
+    this.dataService.isSaveSuccess.pipe(first()).subscribe(isSaveSuccess => {
+      if (isSaveSuccess) {
+        this.toast.success(Constants.message.SAVE_USER_SUCCESSFULLY);
+        this.dataService.saveSuccess(false);
+      }
+    })
   }
 
 }

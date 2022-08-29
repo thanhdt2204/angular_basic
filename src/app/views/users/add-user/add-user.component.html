@@ -1,1 +1,28 @@
-<p>add-user works!</p>
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">Create User</div>
+        <form [formGroup]="userForm" (ngSubmit)="handleAdd()">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="email" required />
+            </div>
+            <div *ngIf="userForm.get('email')?.errors?.['email']">
+                <div class="text-danger">Email is invalid</div>
+            </div>
+
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="firstName" required />
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName" required />
+            </div>
+
+            <input type="button" (click)="handleCancel()" class="btn btn-default" value="Cancel" />&nbsp;
+            <input class='btn btn-success' type="submit" [disabled]="!userForm.valid" value="Submit" />
+        </form>
+
+    </div>
+</div>

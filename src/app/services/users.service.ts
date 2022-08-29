@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { User } from '../models/user';
 import { UserPage } from '../models/userPage';
 
 @Injectable({
@@ -23,6 +24,10 @@ export class UsersService {
 
   deleteUser(email: any): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/user/${email}`);
+  }
+
+  saveUser(data: any): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/user`, data);
   }
 
 }
