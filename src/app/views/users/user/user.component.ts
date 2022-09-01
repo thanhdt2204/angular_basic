@@ -58,6 +58,28 @@ export class UserComponent implements OnInit {
       })
   }
 
+  f_buttonUpdate(email: string) {
+    this.email = email;
+  }
+
+  f_update(data: any) {
+    this.userService.updateUser(data)
+      .subscribe({
+        next: data => {
+          this.currentPage = 0;
+          this.getAllUsers(this.currentPage);
+          this.toast.success(Constants.message.UPDATE_USER_SUCCESSFULLY);
+        },
+        error: error => {
+          if (error.status == 500) {
+            this.toast.error(Constants.message.INTERNAL_SERVER_ERROR);
+          } else if (error.status == 400) {
+            this.toast.warning(error.status + ': ' + error.error);
+          }
+        }
+      })
+  }
+
   handleAddNew() {
     this.router.navigate(['/user/new']);
   }

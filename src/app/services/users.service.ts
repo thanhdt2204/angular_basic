@@ -30,4 +30,12 @@ export class UsersService {
     return this.http.post<User>(`${this.baseUrl}/user`, data);
   }
 
+  updateUser(data: any): Observable<User> {
+    return this.http.put<User>(`${this.baseUrl}/user`, data);
+  }
+
+  getUser(email: any): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/user/${email}`);
+  }
+
 }

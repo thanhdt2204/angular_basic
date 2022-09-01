@@ -14,9 +14,9 @@
             </div>
         </div>
         <app-list-user [userPage]="userPage" [currentPage]="currentPage" (f_changePage)="f_changePage($event)"
-            (f_buttonDelete)="f_buttonDelete($event)">
+            (f_buttonDelete)="f_buttonDelete($event)" (f_buttonUpdate)="f_buttonUpdate($event)">
         </app-list-user>
     </div>
 </div>
-<app-update-user></app-update-user>
+<app-update-user [email]="email" (f_update)="f_update($event)"></app-update-user>
 <app-delete-user [email]="email" (f_delete)="f_delete()"></app-delete-user>

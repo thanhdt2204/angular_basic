@@ -15,6 +15,7 @@ export class ListUserComponent implements OnInit {
 
   @Output() f_changePage = new EventEmitter<number>();
   @Output() f_buttonDelete = new EventEmitter<string>();
+  @Output() f_buttonUpdate = new EventEmitter<string>();
 
   constructor() { }
 
@@ -24,6 +25,10 @@ export class ListUserComponent implements OnInit {
 
   handleButtonDelete(email: string) {
     this.f_buttonDelete.emit(email);
+  };
+
+  handleButtonUpdate(email: string) {
+    this.f_buttonUpdate.emit(email);
   };
 
   ngOnInit(): void {
