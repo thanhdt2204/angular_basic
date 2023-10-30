@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-home',
   template:
     '<div style=" color: white;text-align: center; margin-top: 260px; font-weight: bold">' +
-    'Welcome To Sample React Project' +
+    'Welcome To Angular Sample Project' +
     '</div>'
 })
 export class HomeComponent implements OnInit {
